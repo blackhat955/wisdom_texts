@@ -1,7 +1,7 @@
 package com.wisdomtexts.api.model;
 
-import jakarta.persistence.*;
-import java.util.UUID;
+import jakarta.persistence.*; // this for JPA
+import java.util.UUID; // this one to make Unique id for the respected row
 
 @Entity
 @Table(name = "books")
@@ -20,19 +20,19 @@ public class Book {
     @Column(name = "author_id", nullable = false)
     private UUID authorId;
     
-    
+    // this one kick in whene book object is created with no data
     public Book() {
         this.authorId = UUID.randomUUID();
     }
     
-
+//When bok object is created properly
     public Book(String title, String author) {
         this.title = title;
         this.author = author;
         this.authorId = UUID.randomUUID();
     }
     
-
+// get and set for the values
     public UUID getId() {
         return id;
     }

@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-@RestController
+@RestController // automatic return data to json object 
 @RequestMapping("/api/books")
 @CrossOrigin(origins = "*")
 public class BookController {
@@ -20,7 +20,7 @@ public class BookController {
     private BookService bookService;
     
     @PostMapping
-    public ResponseEntity<Book> createBook(@RequestBody Book book) {
+    public ResponseEntity<Book> createBook(@RequestBody Book book) {  // make post request to save data into database json object from the request body
         try {
             Book savedBook = bookService.saveBook(book);
             return new ResponseEntity<>(savedBook, HttpStatus.CREATED);
