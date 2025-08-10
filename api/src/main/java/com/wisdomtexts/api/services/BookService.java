@@ -13,7 +13,7 @@ import java.util.UUID;
 public class BookService {
     
     @Autowired
-    private BookRepository bookRepository;
+    private BookRepository bookRepository; // Dependency Injection
     
     public Book saveBook(Book book) {
         return bookRepository.save(book);
@@ -27,6 +27,10 @@ public class BookService {
         return bookRepository.findById(id);
     }
     
+    public Optional<Book> getBookByTitle(String title) {
+        return bookRepository.findByTitle(title);
+    }
+    
     public void deleteBook(UUID id) {
         bookRepository.deleteById(id);
     }
@@ -35,10 +39,10 @@ public class BookService {
         Book book = bookRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Book not found with id: " + id));
         
-        book.setTitle(bookDetails.getTitle());
+        book.setTitle(bookDetails.getTitle());// this one basically if that  find the book then change the data according to the request 
         book.setAuthor(bookDetails.getAuthor());
         book.setAuthorId(bookDetails.getAuthorId());
         
-        return bookRepository.save(book);
+        return bookRepository.save(book); 
     }
 }
